@@ -1,0 +1,445 @@
+2025-10-15 11:46:56,868 - main - ERROR - GOOGLE_API_KEY not found in environment variables
+2025-10-15 11:49:02,574 - main - INFO - AI Service initialized with Gemini model
+2025-10-15 11:49:02,581 - main - INFO - ==================================================
+2025-10-15 11:49:02,582 - main - INFO - AI Resume Screening & ATS System Starting...
+2025-10-15 11:49:02,583 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-15 11:49:02,583 - main - INFO - All services initialized successfully
+2025-10-15 11:49:02,583 - main - INFO - ==================================================
+2025-10-15 11:55:27,603 - main - INFO - Extracted text from page 1
+2025-10-15 11:55:27,606 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-15 11:55:27,607 - main - INFO - Text cleaned: 2457 characters
+2025-10-15 11:55:45,613 - main - INFO - Fit analysis completed: yes
+2025-10-15 11:56:13,377 - main - INFO - ATS score calculated: 75 (Good)
+2025-10-15 11:56:38,154 - main - INFO - Generated 7 suggestions
+2025-10-15 11:56:38,155 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:09:23,983 - main - ERROR - GOOGLE_API_KEY not found in environment variables
+2025-10-16 11:11:01,502 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:11:01,506 - main - INFO - ==================================================
+2025-10-16 11:11:01,506 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:11:01,507 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:11:01,507 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:11:01,507 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:11:01,507 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:11:01,507 - main - INFO - All services initialized successfully
+2025-10-16 11:11:01,507 - main - INFO - ==================================================
+2025-10-16 11:12:07,292 - main - INFO - Extracted text from page 1
+2025-10-16 11:12:07,293 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:12:07,294 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:12:14,531 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:12:45,555 - main - INFO - Comprehensive analysis completed: ATS Score = 75
+2025-10-16 11:12:45,562 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:14:14,504 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:14:59,928 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:14:59,931 - main - INFO - ==================================================
+2025-10-16 11:14:59,932 - main - INFO - AI Resume Screening & ATS System Starting...
+2025-10-16 11:14:59,932 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:14:59,932 - main - INFO - All services initialized successfully
+2025-10-16 11:14:59,932 - main - INFO - ==================================================
+2025-10-16 11:15:07,082 - main - INFO - Extracted text from page 1
+2025-10-16 11:15:07,082 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:15:07,084 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:15:21,847 - main - INFO - Fit analysis completed: yes
+2025-10-16 11:15:56,581 - main - INFO - ATS score calculated: 65 (Average)
+2025-10-16 11:16:17,562 - main - INFO - Generated 7 suggestions
+2025-10-16 11:16:17,562 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:18:47,497 - main - INFO - AI Resume Screening & ATS System Shutting Down...
+2025-10-16 11:18:51,037 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:18:51,040 - main - INFO - ==================================================
+2025-10-16 11:18:51,041 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:18:51,041 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:18:51,041 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:18:51,042 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:18:51,042 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:18:51,042 - main - INFO - All services initialized successfully
+2025-10-16 11:18:51,042 - main - INFO - ==================================================
+2025-10-16 11:20:14,104 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:20:15,679 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:20:15,684 - main - INFO - ==================================================
+2025-10-16 11:20:15,685 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:20:15,685 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:20:15,685 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:20:15,686 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:20:15,686 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:20:15,686 - main - INFO - All services initialized successfully
+2025-10-16 11:20:15,686 - main - INFO - ==================================================
+2025-10-16 11:21:24,080 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:21:25,571 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:21:25,575 - main - INFO - ==================================================
+2025-10-16 11:21:25,575 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:21:25,576 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:21:25,576 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:21:25,576 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:21:25,576 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:21:25,577 - main - INFO - All services initialized successfully
+2025-10-16 11:21:25,577 - main - INFO - ==================================================
+2025-10-16 11:21:31,668 - main - INFO - Extracted text from page 1
+2025-10-16 11:21:31,669 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:21:31,670 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:21:41,626 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:22:06,676 - main - INFO - Comprehensive analysis completed: ATS Score = 67
+2025-10-16 11:22:06,678 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:27:41,002 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:27:44,518 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:27:44,522 - main - INFO - ==================================================
+2025-10-16 11:27:44,522 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:27:44,522 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:27:44,523 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:27:44,523 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:27:44,523 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:27:44,524 - main - INFO - All services initialized successfully
+2025-10-16 11:27:44,524 - main - INFO - ==================================================
+2025-10-16 11:27:51,735 - main - INFO - Extracted text from page 1
+2025-10-16 11:27:51,736 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:27:51,736 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:27:51,737 - main - ERROR - Candidate data extraction failed: Invalid format specifier ' "Python", "relevance_score": 95' for object of type 'str'
+2025-10-16 11:27:51,737 - main - ERROR - Complete analysis failed: 500: Candidate data extraction failed: Invalid format specifier ' "Python", "relevance_score": 95' for object of type 'str'
+2025-10-16 11:27:51,738 - main - ERROR - HTTP error: 500 - Analysis failed: 500: Candidate data extraction failed: Invalid format specifier ' "Python", "relevance_score": 95' for object of type 'str'
+2025-10-16 11:29:44,435 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:29:45,913 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:29:45,917 - main - INFO - ==================================================
+2025-10-16 11:29:45,917 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:29:45,917 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:29:45,918 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:29:45,918 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:29:45,918 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:29:45,918 - main - INFO - All services initialized successfully
+2025-10-16 11:29:45,919 - main - INFO - ==================================================
+2025-10-16 11:30:11,521 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:30:13,193 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:30:13,196 - main - INFO - ==================================================
+2025-10-16 11:30:13,197 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:30:13,197 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:30:13,197 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:30:13,197 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:30:13,198 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:30:13,198 - main - INFO - All services initialized successfully
+2025-10-16 11:30:13,198 - main - INFO - ==================================================
+2025-10-16 11:30:16,452 - main - INFO - Extracted text from page 1
+2025-10-16 11:30:16,453 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:30:16,453 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:30:16,453 - main - ERROR - Candidate data extraction failed: Invalid format specifier ' "Python", "relevance_score": 95' for object of type 'str'
+2025-10-16 11:30:16,454 - main - ERROR - Complete analysis failed: 500: Candidate data extraction failed: Invalid format specifier ' "Python", "relevance_score": 95' for object of type 'str'
+2025-10-16 11:30:16,454 - main - ERROR - HTTP error: 500 - Analysis failed: 500: Candidate data extraction failed: Invalid format specifier ' "Python", "relevance_score": 95' for object of type 'str'
+2025-10-16 11:32:53,671 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:32:55,108 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:32:55,112 - main - INFO - ==================================================
+2025-10-16 11:32:55,112 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:32:55,112 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:32:55,112 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:32:55,113 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:32:55,113 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:32:55,113 - main - INFO - All services initialized successfully
+2025-10-16 11:32:55,113 - main - INFO - ==================================================
+2025-10-16 11:35:42,953 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:35:44,387 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:35:44,390 - main - INFO - ==================================================
+2025-10-16 11:35:44,390 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:35:44,391 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:35:44,391 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:35:44,391 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:35:44,392 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:35:44,392 - main - INFO - All services initialized successfully
+2025-10-16 11:35:44,392 - main - INFO - ==================================================
+2025-10-16 11:35:50,661 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:35:52,247 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:35:52,251 - main - INFO - ==================================================
+2025-10-16 11:35:52,251 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:35:52,251 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:35:52,252 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:35:52,252 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:35:52,252 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:35:52,253 - main - INFO - All services initialized successfully
+2025-10-16 11:35:52,254 - main - INFO - ==================================================
+2025-10-16 11:35:56,320 - main - INFO - Extracted text from page 1
+2025-10-16 11:35:56,320 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:35:56,322 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:35:58,851 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:36:04,559 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:36:04,561 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:37:14,431 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:37:17,925 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:37:17,929 - main - INFO - ==================================================
+2025-10-16 11:37:17,929 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:37:17,930 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:37:17,930 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:37:17,930 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:37:17,930 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:37:17,931 - main - INFO - All services initialized successfully
+2025-10-16 11:37:17,931 - main - INFO - ==================================================
+2025-10-16 11:37:20,712 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:38:38,284 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:38:38,287 - main - INFO - ==================================================
+2025-10-16 11:38:38,288 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:38:38,288 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:38:38,288 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:38:38,288 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:38:38,288 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:38:38,289 - main - INFO - All services initialized successfully
+2025-10-16 11:38:38,289 - main - INFO - ==================================================
+2025-10-16 11:42:04,326 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:42:42,410 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:42:42,414 - main - INFO - ==================================================
+2025-10-16 11:42:42,414 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:42:42,414 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:42:42,415 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:42:42,415 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:42:42,415 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:42:42,415 - main - INFO - All services initialized successfully
+2025-10-16 11:42:42,415 - main - INFO - ==================================================
+2025-10-16 11:42:45,411 - main - INFO - Extracted text from page 1
+2025-10-16 11:42:45,412 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:42:45,413 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:42:47,829 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:42:53,041 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:42:53,042 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:44:17,043 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:44:20,557 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:44:20,561 - main - INFO - ==================================================
+2025-10-16 11:44:20,561 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:44:20,562 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:44:20,562 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:44:20,562 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:44:20,563 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:44:20,563 - main - INFO - All services initialized successfully
+2025-10-16 11:44:20,563 - main - INFO - ==================================================
+2025-10-16 11:44:31,691 - main - INFO - Extracted text from page 1
+2025-10-16 11:44:31,692 - main - INFO - Successfully extracted 3244 characters from PDF
+2025-10-16 11:44:31,693 - main - INFO - Text cleaned: 3243 characters
+2025-10-16 11:44:34,525 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:44:34,534 - main - ERROR - Complete analysis failed: 2 validation errors for ResumeData
+job_role
+  Field required [type=missing, input_value={'candidate_details': Can..., relevance_score=75)])}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+job_description
+  Field required [type=missing, input_value={'candidate_details': Can..., relevance_score=75)])}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2025-10-16 11:44:34,535 - main - ERROR - HTTP error: 500 - Analysis failed: 2 validation errors for ResumeData
+job_role
+  Field required [type=missing, input_value={'candidate_details': Can..., relevance_score=75)])}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+job_description
+  Field required [type=missing, input_value={'candidate_details': Can..., relevance_score=75)])}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2025-10-16 11:45:40,097 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:45:43,693 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:45:43,697 - main - INFO - ==================================================
+2025-10-16 11:45:43,697 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:45:43,698 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:45:43,698 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:45:43,699 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:45:43,699 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:45:43,699 - main - INFO - All services initialized successfully
+2025-10-16 11:45:43,699 - main - INFO - ==================================================
+2025-10-16 11:45:45,343 - main - INFO - Extracted text from page 1
+2025-10-16 11:45:45,343 - main - INFO - Successfully extracted 3244 characters from PDF
+2025-10-16 11:45:45,344 - main - INFO - Text cleaned: 3243 characters
+2025-10-16 11:45:48,944 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:45:54,701 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:45:54,701 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:46:31,206 - main - INFO - Extracted text from page 1
+2025-10-16 11:46:31,249 - main - INFO - Extracted text from page 2
+2025-10-16 11:46:31,250 - main - INFO - Successfully extracted 2818 characters from PDF
+2025-10-16 11:46:31,251 - main - INFO - Text cleaned: 2817 characters
+2025-10-16 11:46:33,752 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:46:38,678 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:46:38,680 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:49:31,287 - main - INFO - Complete analysis requested for role: Software Engineer
+2025-10-16 11:49:31,581 - main - INFO - Extracted text from page 1
+2025-10-16 11:49:31,581 - main - INFO - Successfully extracted 3244 characters from PDF
+2025-10-16 11:49:31,582 - main - INFO - Text cleaned: 3243 characters
+2025-10-16 11:49:34,335 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:49:39,174 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:49:39,175 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:53:11,273 - main - INFO - Complete analysis requested for role: Software Engineer
+2025-10-16 11:53:11,418 - main - INFO - Extracted text from page 1
+2025-10-16 11:53:11,419 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:53:11,419 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:53:13,866 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:53:18,851 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:53:18,852 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:55:05,149 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:55:08,786 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:55:08,789 - main - INFO - ==================================================
+2025-10-16 11:55:08,790 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:55:08,790 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:55:08,790 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:55:08,790 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:55:08,790 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:55:08,790 - main - INFO - All services initialized successfully
+2025-10-16 11:55:08,790 - main - INFO - ==================================================
+2025-10-16 11:55:59,932 - main - INFO - Complete analysis requested for role: Software Engineer
+2025-10-16 11:56:00,046 - main - INFO - Extracted text from page 1
+2025-10-16 11:56:00,047 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 11:56:00,048 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 11:56:02,762 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 11:56:07,229 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 11:56:07,230 - main - INFO - Complete analysis finished successfully
+2025-10-16 11:58:21,169 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 11:58:24,802 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 11:58:24,805 - main - INFO - ==================================================
+2025-10-16 11:58:24,806 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 11:58:24,806 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 11:58:24,806 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 11:58:24,806 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 11:58:24,807 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 11:58:24,807 - main - INFO - All services initialized successfully
+2025-10-16 11:58:24,807 - main - INFO - ==================================================
+2025-10-16 12:00:01,363 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 12:00:02,833 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 12:00:02,837 - main - INFO - ==================================================
+2025-10-16 12:00:02,837 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 12:00:02,837 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 12:00:02,838 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 12:00:02,838 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 12:00:02,838 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 12:00:02,839 - main - INFO - All services initialized successfully
+2025-10-16 12:00:02,839 - main - INFO - ==================================================
+2025-10-16 12:02:01,508 - main - INFO - Complete analysis requested for role: Software Engineer
+2025-10-16 12:02:01,618 - main - INFO - Extracted text from page 1
+2025-10-16 12:02:01,619 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 12:02:01,620 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 12:02:04,869 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 12:02:09,732 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 12:02:09,732 - main - INFO - Complete analysis finished successfully
+2025-10-16 12:03:33,885 - main - INFO - Complete analysis requested for role: Social Media Manager
+2025-10-16 12:03:34,023 - main - INFO - Extracted text from page 1
+2025-10-16 12:03:34,023 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 12:03:34,024 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 12:03:36,546 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 12:03:41,330 - main - INFO - Comprehensive analysis completed: ATS Score = 58
+2025-10-16 12:03:41,331 - main - INFO - Complete analysis finished successfully
+2025-10-16 12:31:33,899 - main - INFO - Complete analysis requested for role: Social Media Manager
+2025-10-16 12:31:34,022 - main - INFO - Extracted text from page 1
+2025-10-16 12:31:34,023 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 12:31:34,024 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 12:31:37,251 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 12:31:42,239 - main - INFO - Comprehensive analysis completed: ATS Score = 55
+2025-10-16 12:31:42,241 - main - INFO - Complete analysis finished successfully
+2025-10-16 13:55:23,044 - main - INFO - Complete analysis requested for role: Full Stack Developer
+2025-10-16 13:55:23,192 - main - INFO - Extracted text from page 1
+2025-10-16 13:55:23,192 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 13:55:23,193 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 13:55:26,614 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 13:55:31,400 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 13:55:31,401 - main - INFO - Complete analysis finished successfully
+2025-10-16 14:06:27,901 - main - INFO - Complete analysis requested for role: Full Stack Developer
+2025-10-16 14:06:28,062 - main - INFO - Extracted text from page 1
+2025-10-16 14:06:28,063 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 14:06:28,064 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 14:06:30,678 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 14:06:35,941 - main - INFO - Comprehensive analysis completed: ATS Score = 78
+2025-10-16 14:06:35,942 - main - INFO - Complete analysis finished successfully
+2025-10-16 14:09:26,198 - main - INFO - Complete analysis requested for role: AI/ML Engineer (NLP/Full Stack)
+2025-10-16 14:09:26,354 - main - INFO - Extracted text from page 1
+2025-10-16 14:09:26,354 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 14:09:26,355 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 14:09:29,615 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 14:09:36,216 - main - INFO - Comprehensive analysis completed: ATS Score = 85
+2025-10-16 14:09:36,217 - main - INFO - Complete analysis finished successfully
+2025-10-16 14:34:39,312 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 14:34:44,992 - main - INFO - AI Service initialized with model=gemini-2.5-flash temp=0.1 top_p=0.95 top_k=40 max_tokens=2048
+2025-10-16 14:34:45,001 - main - INFO - ==================================================
+2025-10-16 14:34:45,002 - main - INFO - AI Resume Screening System v2.1 Starting...
+2025-10-16 14:34:45,002 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 14:34:45,003 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 14:34:45,003 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 14:34:45,004 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 14:34:45,004 - main - INFO - Default Generation Config: temp=0.1, top_p=0.95, top_k=40, max_tokens=2048
+2025-10-16 14:34:45,005 - main - INFO - All services initialized successfully
+2025-10-16 14:34:45,005 - main - INFO - ==================================================
+2025-10-16 14:35:48,280 - main - INFO - Complete analysis requested for role: AI/ML Engineer (NLP/Full Stack) with temperature=None
+2025-10-16 14:35:48,653 - main - INFO - Extracted text from page 1
+2025-10-16 14:35:48,655 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 14:35:48,658 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 14:36:00,210 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 14:36:14,731 - main - ERROR - Comprehensive analysis failed: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.
+2025-10-16 14:36:14,733 - main - ERROR - Complete analysis failed: 500: Comprehensive analysis failed: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.
+2025-10-16 14:36:14,734 - main - ERROR - HTTP error: 500 - Analysis failed: 500: Comprehensive analysis failed: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. The candidate's [finish_reason](https://ai.google.dev/api/generate-content#finishreason) is 2.
+2025-10-16 14:42:57,780 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 14:43:03,140 - main - INFO - AI Service initialized with model=gemini-2.5-flash temp=0.1 top_p=0.95 top_k=40 max_tokens=2048
+2025-10-16 14:43:03,149 - main - INFO - ==================================================
+2025-10-16 14:43:03,150 - main - INFO - AI Resume Screening System v2.2 Starting...
+2025-10-16 14:43:03,150 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 14:43:03,151 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 14:43:03,152 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis (with PII masking)
+2025-10-16 14:43:03,152 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 14:43:03,153 - main - INFO - Default Generation Config: temp=0.1, top_p=0.95, top_k=40, max_tokens=2048
+2025-10-16 14:43:03,153 - main - INFO - Safety Limits: MAX_RESUME_CHARS=15000, RETRY_ATTEMPTS=2
+2025-10-16 14:43:03,153 - main - INFO - All services initialized successfully
+2025-10-16 14:43:03,154 - main - INFO - ==================================================
+2025-10-16 14:43:36,009 - main - INFO - Complete analysis requested for role: AI/ML Engineer (NLP/Full Stack) with temperature=None
+2025-10-16 14:43:36,377 - main - INFO - Extracted text from page 1
+2025-10-16 14:43:36,378 - main - INFO - Successfully extracted 2478 characters from PDF
+2025-10-16 14:43:36,380 - main - INFO - Text cleaned: 2457 characters
+2025-10-16 14:43:48,076 - main - INFO - Candidate data extraction completed successfully
+2025-10-16 14:44:02,876 - main - INFO - Comprehensive analysis completed: ATS Score = 50
+2025-10-16 14:44:02,878 - main - INFO - Complete analysis finished successfully
+2025-10-16 14:44:31,453 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 14:44:36,660 - main - INFO - AI Service initialized with Gemini model
+2025-10-16 14:44:36,668 - main - INFO - ==================================================
+2025-10-16 14:44:36,669 - main - INFO - AI Resume Screening System v2.0 Starting...
+2025-10-16 14:44:36,669 - main - INFO - Architecture: Two-Prompt System
+2025-10-16 14:44:36,670 - main - INFO -   - Prompt 1: Candidate Details & Keywords Extraction
+2025-10-16 14:44:36,670 - main - INFO -   - Prompt 2: Comprehensive Screening Analysis
+2025-10-16 14:44:36,670 - main - INFO - Gemini AI Model: gemini-2.5-flash
+2025-10-16 14:44:36,671 - main - INFO - All services initialized successfully
+2025-10-16 14:44:36,671 - main - INFO - ==================================================
+2025-10-16 14:47:49,564 - main - INFO - AI Resume Screening System Shutting Down...
+2025-10-16 14:47:52,413 - INFO - Gemini model initialized for ATS analysis
+2025-10-16 14:47:52,421 - INFO - ============================================================
+2025-10-16 14:47:52,422 - INFO - AI Resume Screening System v2.1 Starting...
+2025-10-16 14:47:52,422 - INFO - Architecture: Deterministic Two-Prompt System
+2025-10-16 14:47:52,423 - INFO -   - Prompt 1: Candidate Extraction
+2025-10-16 14:47:52,423 - INFO -   - Prompt 2: ATS Scoring with Rubric Logic
+2025-10-16 14:47:52,424 - INFO - ============================================================
+2025-10-16 14:48:30,483 - INFO - Extracted text from page 1
+2025-10-16 14:48:30,485 - INFO - Total extracted characters: 2478
+2025-10-16 14:48:36,315 - INFO - Comprehensive analysis completed (ATS Score: 92)
+2025-10-16 14:51:02,332 - INFO - Extracted text from page 1
+2025-10-16 14:51:02,334 - INFO - Total extracted characters: 2478
+2025-10-16 14:51:09,077 - INFO - Comprehensive analysis completed (ATS Score: 78)
+2025-10-16 14:51:45,898 - INFO - Extracted text from page 1
+2025-10-16 14:51:45,900 - INFO - Total extracted characters: 2478
+2025-10-16 14:51:51,609 - INFO - Comprehensive analysis completed (ATS Score: 92)
+2025-10-16 14:52:32,232 - INFO - Extracted text from page 1
+2025-10-16 14:52:32,234 - INFO - Total extracted characters: 3244
+2025-10-16 14:52:39,124 - INFO - Comprehensive analysis completed (ATS Score: 78)
+2025-10-16 14:53:05,525 - INFO - Extracted text from page 1
+2025-10-16 14:53:05,526 - INFO - Total extracted characters: 2478
+2025-10-16 14:53:15,185 - INFO - Comprehensive analysis completed (ATS Score: 45)
+2025-10-16 15:05:44,239 - INFO - Extracted text from page 1
+2025-10-16 15:05:44,460 - INFO - Extracted text from page 2
+2025-10-16 15:05:44,462 - INFO - Total extracted characters: 4602
+2025-10-16 15:05:52,673 - INFO - Comprehensive analysis completed (ATS Score: 78)
+2025-10-16 16:29:04,109 - INFO - Shutting down Resume Screening System...
+2025-10-16 16:30:39,957 - INFO - LangChain GoogleGenerativeAI initialized for ATS analysis
+2025-10-16 16:30:39,963 - INFO - ============================================================
+2025-10-16 16:30:39,964 - INFO - AI Resume Screening System v2.2 Starting...
+2025-10-16 16:30:39,964 - INFO - Architecture: LangChain with Google Gemini
+2025-10-16 16:30:40,057 - INFO - ============================================================
+2025-10-16 16:31:11,471 - INFO - Extracted text from page 1
+2025-10-16 16:31:11,473 - INFO - Total extracted characters: 2478
+2025-10-16 16:31:14,178 - INFO - Successfully extracted candidate data
+2025-10-16 16:31:19,908 - INFO - Comprehensive analysis completed (ATS Score: 78, Grade: Good)
+2025-10-16 16:32:17,471 - INFO - Extracted text from page 1
+2025-10-16 16:32:17,474 - INFO - Total extracted characters: 2478
+2025-10-16 16:32:20,449 - INFO - Successfully extracted candidate data
+2025-10-16 16:32:32,507 - INFO - Comprehensive analysis completed (ATS Score: 85, Grade: Good)
+2025-10-16 16:32:57,712 - INFO - Shutting down Resume Screening System...
+2025-10-16 16:33:03,258 - INFO - Gemini model initialized for ATS analysis
+2025-10-16 16:33:03,268 - INFO - ============================================================
+2025-10-16 16:33:03,268 - INFO - AI Resume Screening System v2.1 Starting...
+2025-10-16 16:33:03,269 - INFO - Architecture: Deterministic Two-Prompt System
+2025-10-16 16:33:03,269 - INFO -   - Prompt 1: Candidate Extraction
+2025-10-16 16:33:03,270 - INFO -   - Prompt 2: ATS Scoring with Rubric Logic
+2025-10-16 16:33:03,271 - INFO - ============================================================
+2025-10-16 16:33:09,903 - INFO - Extracted text from page 1
+2025-10-16 16:33:09,905 - INFO - Total extracted characters: 2478
+2025-10-16 16:33:15,519 - INFO - Comprehensive analysis completed (ATS Score: 92)
+2025-10-16 16:38:36,962 - INFO - Extracted text from page 1
+2025-10-16 16:38:37,136 - INFO - Extracted text from page 2
+2025-10-16 16:38:37,137 - INFO - Total extracted characters: 2818
+2025-10-16 16:38:44,014 - INFO - Comprehensive analysis completed (ATS Score: 82)
+2025-10-16 16:48:28,606 - INFO - Extracted text from page 1
+2025-10-16 16:48:28,607 - INFO - Total extracted characters: 2478
+2025-10-16 16:48:41,893 - INFO - Comprehensive analysis completed (ATS Score: 85)
