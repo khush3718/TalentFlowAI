@@ -163,14 +163,31 @@ Rules:
         try:
             prompt = prompt_tmpl.substitute(cv_text=cv_text)
             response = self.model.generate_content(prompt)
-            result_text = (getattr(response, "text", "") or "").strip()
+            
+            # Handle response properly
+            if hasattr(response, 'text'):
+                result_text = response.text.strip()
+            elif hasattr(response, 'parts'):
+                result_text = ''.join(part.text for part in response.parts if hasattr(part, 'text')).strip()
+            else:
+                result_text = str(response).strip()
 
+            # Extract JSON from markdown code blocks
             json_match = re.search(r'```json\s*(.*?)\s*```', result_text, re.DOTALL | re.IGNORECASE)
-            result_text = json_match.group(1).strip() if json_match else result_text
+            if json_match:
+                result_text = json_match.group(1).strip()
+            
+            # Parse JSON
             data = json.loads(result_text)
+            
+            # Validate structure
+            if not isinstance(data, dict):
+                raise ValueError("Response is not a valid JSON object")
+            
             return data
         except Exception as e:
             logger.error(f"Candidate data extraction failed: {e}")
+            logger.error(f"Response type: {type(response)}")
             return {
                 "candidate_details": {},
                 "keywords": {"keywords": []}
@@ -226,15 +243,32 @@ INTERNAL SEED: {datetime.now().timestamp()}
 """
         try:
             response = self.model.generate_content(prompt)
-            result_text = (getattr(response, "text", "") or "").strip()
+            
+            # Handle response properly
+            if hasattr(response, 'text'):
+                result_text = response.text.strip()
+            elif hasattr(response, 'parts'):
+                result_text = ''.join(part.text for part in response.parts if hasattr(part, 'text')).strip()
+            else:
+                result_text = str(response).strip()
 
+            # Extract JSON from markdown code blocks
             json_match = re.search(r'```json\s*(.*?)\s*```', result_text, re.DOTALL)
-            result_text = json_match.group(1).strip() if json_match else result_text
+            if json_match:
+                result_text = json_match.group(1).strip()
+            
+            # Parse JSON
             parsed_data = json.loads(result_text)
+            
+            # Validate structure
+            if not isinstance(parsed_data, dict):
+                raise ValueError("Response is not a valid JSON object")
 
+            # Normalize score
             score = max(0, min(100, int(parsed_data.get("ats_score", 50))))
             parsed_data["ats_score"] = score
 
+            # Assign grade based on score
             if score >= 90:
                 parsed_data["grade"] = "Excellent"
             elif score >= 75:
@@ -246,6 +280,7 @@ INTERNAL SEED: {datetime.now().timestamp()}
             else:
                 parsed_data["grade"] = "Poor"
 
+            # Ensure suggestions is a list
             if not isinstance(parsed_data.get("suggestions"), list):
                 parsed_data["suggestions"] = []
 
@@ -254,6 +289,7 @@ INTERNAL SEED: {datetime.now().timestamp()}
 
         except Exception as e:
             logger.error(f"Comprehensive analysis failed: {e}")
+            logger.error(f"Response type: {type(response) if 'response' in locals() else 'undefined'}")
             return {
                 "summary": "Analysis failed due to parsing issue.",
                 "ats_score": 50,
@@ -324,16 +360,47 @@ async def complete_analysis(
     content = await resume.read()
 
     try:
+        # Extract and clean text
         raw_text = pdf_extractor.extract_text(content)
         cleaned_text = text_cleaner.clean_text(raw_text)
+        
+        logger.info(f"Processing resume for job role: {job_role}")
 
+        # Extract candidate data
         candidate_data = ai_service.extract_candidate_data(cleaned_text)
-        candidate_details = CandidateDetails(**candidate_data.get("candidate_details", {}))
-        keywords_list = candidate_data.get("keywords", {}).get("keywords", [])
-        keyword_objs = [
-            KeywordItem(**kw) if isinstance(kw, dict) else KeywordItem(keyword=kw, relevance_score=70)
-            for kw in keywords_list
-        ]
+        
+        # Safely extract candidate details
+        candidate_details_dict = candidate_data.get("candidate_details", {})
+        if not isinstance(candidate_details_dict, dict):
+            logger.warning(f"candidate_details is not a dict: {type(candidate_details_dict)}")
+            candidate_details_dict = {}
+        
+        candidate_details = CandidateDetails(**candidate_details_dict)
+        
+        # Safely extract keywords
+        keywords_data = candidate_data.get("keywords", {})
+        if not isinstance(keywords_data, dict):
+            logger.warning(f"keywords is not a dict: {type(keywords_data)}")
+            keywords_data = {"keywords": []}
+        
+        keywords_list = keywords_data.get("keywords", [])
+        if not isinstance(keywords_list, list):
+            logger.warning(f"keywords list is not a list: {type(keywords_list)}")
+            keywords_list = []
+        
+        # Convert keywords to KeywordItem objects
+        keyword_objs = []
+        for kw in keywords_list:
+            try:
+                if isinstance(kw, dict):
+                    keyword_objs.append(KeywordItem(**kw))
+                elif isinstance(kw, str):
+                    keyword_objs.append(KeywordItem(keyword=kw, relevance_score=70))
+                else:
+                    logger.warning(f"Unexpected keyword type: {type(kw)}")
+            except Exception as kw_error:
+                logger.warning(f"Failed to parse keyword: {kw_error}")
+                continue
 
         resume_data = ResumeData(
             job_role=job_role,
@@ -342,15 +409,34 @@ async def complete_analysis(
             keywords=Keywords(keywords=keyword_objs)
         )
 
+        # Perform comprehensive analysis
         screening_data = ai_service.analyze_resume_comprehensive(
             job_role, job_description, cleaned_text, candidate_details.name or "Candidate"
         )
+        
+        # Safely extract suggestions
+        suggestions_list = screening_data.get("suggestions", [])
+        if not isinstance(suggestions_list, list):
+            logger.warning(f"suggestions is not a list: {type(suggestions_list)}")
+            suggestions_list = []
+        
+        # Convert suggestions to Suggestion objects
+        suggestion_objs = []
+        for s in suggestions_list:
+            try:
+                if isinstance(s, dict):
+                    suggestion_objs.append(Suggestion(**s))
+                else:
+                    logger.warning(f"Unexpected suggestion type: {type(s)}")
+            except Exception as s_error:
+                logger.warning(f"Failed to parse suggestion: {s_error}")
+                continue
 
         screening = ScreeningAnalysis(
-            summary=screening_data.get("summary", ""),
+            summary=screening_data.get("summary", "Analysis completed."),
             ats_score=screening_data.get("ats_score", 50),
             grade=screening_data.get("grade", "Average"),
-            suggestions=[Suggestion(**s) for s in screening_data.get("suggestions", [])]
+            suggestions=suggestion_objs
         )
 
         return CompleteAnalysisResponse(
@@ -360,9 +446,14 @@ async def complete_analysis(
             analyzed_at=datetime.now().isoformat()
         )
 
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Analysis failed: {e}")
-        raise HTTPException(status_code=500, detail=f"Analysis failed: {e}")
+        logger.error(f"Analysis failed with error: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Analysis failed: {str(e)}"
+        )
 
 # ==================== STARTUP & SHUTDOWN ====================
 @app.on_event("startup")
