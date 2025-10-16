@@ -1,11 +1,3 @@
-
-"""
-AI-Powered Resume Screening & ATS Scoring System (Enhanced)
-FastAPI Backend with Google Gemini AI Integration - Deterministic ATS Scoring
-Version: 2.1.0
-Python: 3.12+
-"""
-
 import os
 import re
 import io
@@ -26,17 +18,18 @@ from dotenv import load_dotenv
 # ==================== CONFIGURATION ====================
 load_dotenv()
 
+# Configure logging for production
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[logging.FileHandler('ats_system.log'), logging.StreamHandler()]
+    handlers=[logging.StreamHandler()]  # Only StreamHandler for Render
 )
 logger = logging.getLogger(__name__)
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     logger.error("Missing GOOGLE_API_KEY in environment variables")
-    raise ValueError("GOOGLE_API_KEY must be set in .env")
+    raise ValueError("GOOGLE_API_KEY must be set in environment variables")
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -164,7 +157,7 @@ OUTPUT JSON FORMAT:
 }
 Rules:
 - Always return exactly 8 keywords if available.
-- Relevance score (0–100) indicates importance in the candidate’s profile.
+- Relevance score (0–100) indicates importance in the candidate's profile.
 - Return only valid JSON.
 """)
         try:
@@ -272,12 +265,15 @@ INTERNAL SEED: {datetime.now().timestamp()}
 app = FastAPI(
     title="AI-Powered Resume Screening & ATS Scoring System",
     description="Automated resume screening with deterministic scoring using Google Gemini AI",
-    version="2.1.0"
+    version="2.1.0",
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
+# CORS configuration - update with your frontend domain in production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Change to specific domains in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -304,7 +300,16 @@ async def general_exception_handler(request, exc):
         content=ErrorResponse(error="Internal Server Error", detail=str(exc)).dict()
     )
 
-# ==================== ENDPOINTS ===================
+# ==================== ENDPOINTS ====================
+@app.get("/", response_model=HealthCheck)
+async def health_check():
+    """Health check endpoint for monitoring"""
+    return HealthCheck(
+        status="healthy",
+        message="AI Resume Screening & ATS Scoring System v2.1 is operational",
+        timestamp=datetime.now().isoformat()
+    )
+
 
 @app.post("/api/v1/complete-analysis", response_model=CompleteAnalysisResponse)
 async def complete_analysis(
@@ -312,6 +317,7 @@ async def complete_analysis(
     job_description: str = Form(...),
     resume: UploadFile = File(...)
 ):
+    """Complete resume analysis endpoint"""
     if not resume.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
@@ -358,7 +364,7 @@ async def complete_analysis(
         logger.error(f"Analysis failed: {e}")
         raise HTTPException(status_code=500, detail=f"Analysis failed: {e}")
 
-# ==================== STARTUP ====================
+# ==================== STARTUP & SHUTDOWN ====================
 @app.on_event("startup")
 async def startup_event():
     logger.info("=" * 60)
@@ -366,15 +372,9 @@ async def startup_event():
     logger.info("Architecture: Deterministic Two-Prompt System")
     logger.info("  - Prompt 1: Candidate Extraction")
     logger.info("  - Prompt 2: ATS Scoring with Rubric Logic")
+    logger.info(f"Environment: {os.getenv('ENVIRONMENT', 'production')}")
     logger.info("=" * 60)
 
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Shutting down Resume Screening System...")
-    
-# ==================== MAIN ====================
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", reload=True)
-
-
