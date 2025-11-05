@@ -318,8 +318,6 @@ EXTRACTION RULES:
             
             return data
         except Exception as e:
-            logger.error(f"Candidate data extraction failed: {e}")
-            logger.error(f"Response type: {type(response)}")
             return {
                 "candidate_details": {
                     "work_experience": [],
@@ -724,3 +722,4 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Shutting down Resume Screening System...")
+
