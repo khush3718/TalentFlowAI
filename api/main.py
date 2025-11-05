@@ -8,6 +8,8 @@ from datetime import datetime
 from string import Template
 
 import pdfplumber
+import docx
+from docx import Document
 import google.generativeai as genai
 from fastapi import FastAPI, File, UploadFile, HTTPException, status, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,6 +19,12 @@ from dotenv import load_dotenv
 
 # ==================== CONFIGURATION ====================
 load_dotenv()
+
+# Current date for experience calculations
+CURRENT_DATE = datetime.now()
+CURRENT_YEAR = CURRENT_DATE.year
+CURRENT_MONTH = CURRENT_DATE.month
+CURRENT_DATE_STR = CURRENT_DATE.strftime("%B %Y")  # e.g., "November 2025"
 
 # Configure logging for production
 logging.basicConfig(
@@ -34,11 +42,28 @@ if not GOOGLE_API_KEY:
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # ==================== PYDANTIC MODELS ====================
+class WorkExperience(BaseModel):
+    company: str
+    role: Optional[str] = None
+    duration: str  # e.g., "2 years 3 months" or "Jan 2020 - Dec 2022"
+    years: float  # Numeric years (e.g., 2.25)
+
+
+class Education(BaseModel):
+    degree: str
+    institution: Optional[str] = None
+    year: Optional[str] = None
+    field_of_study: Optional[str] = None
+
+
 class CandidateDetails(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
     phone: Optional[str] = None
     location: Optional[str] = None
+    work_experience: List[WorkExperience] = Field(default_factory=list)
+    education: List[Education] = Field(default_factory=list)
+    total_experience_years: Optional[float] = None
 
 
 class KeywordItem(BaseModel):
@@ -83,7 +108,7 @@ class HealthCheck(BaseModel):
     status: str
     message: str
     timestamp: str
-    version: str = "2.1.0"
+    version: str = "2.3.0"
 
 
 class ErrorResponse(BaseModel):
@@ -92,9 +117,9 @@ class ErrorResponse(BaseModel):
     timestamp: str = Field(default_factory=lambda: datetime.now().isoformat())
 
 # ==================== SERVICES ====================
-class PDFExtractor:
+class DocumentExtractor:
     @staticmethod
-    def extract_text(pdf_file: bytes) -> str:
+    def extract_text_from_pdf(pdf_file: bytes) -> str:
         """Extract raw text from PDF"""
         try:
             text = ''
@@ -102,14 +127,77 @@ class PDFExtractor:
                 for i, page in enumerate(pdf.pages, start=1):
                     page_text = page.extract_text() or ''
                     text += page_text + '\n'
-                    logger.info(f"Extracted text from page {i}")
+                    logger.info(f"Extracted text from PDF page {i}")
             if not text.strip():
                 raise ValueError("No text found in PDF.")
-            logger.info(f"Total extracted characters: {len(text)}")
+            logger.info(f"Total extracted characters from PDF: {len(text)}")
             return text
         except Exception as e:
             logger.error(f"PDF extraction error: {e}")
             raise HTTPException(status_code=500, detail=f"PDF extraction failed: {e}")
+    
+    @staticmethod
+    def extract_text_from_docx(docx_file: bytes) -> str:
+        """Extract raw text from DOCX"""
+        try:
+            doc = Document(io.BytesIO(docx_file))
+            text = ''
+            
+            # Extract text from paragraphs
+            for i, paragraph in enumerate(doc.paragraphs, start=1):
+                text += paragraph.text + '\n'
+            
+            # Extract text from tables
+            for table in doc.tables:
+                for row in table.rows:
+                    for cell in row.cells:
+                        text += cell.text + '\n'
+            
+            if not text.strip():
+                raise ValueError("No text found in DOCX.")
+            
+            logger.info(f"Total extracted characters from DOCX: {len(text)}")
+            return text
+        except Exception as e:
+            logger.error(f"DOCX extraction error: {e}")
+            raise HTTPException(status_code=500, detail=f"DOCX extraction failed: {e}")
+    
+    @staticmethod
+    def extract_text_from_doc(doc_file: bytes) -> str:
+        """Extract raw text from DOC (older format)"""
+        try:
+            # Try to read as DOCX first (some .doc files are actually .docx)
+            try:
+                return DocumentExtractor.extract_text_from_docx(doc_file)
+            except:
+                # If that fails, we need python-docx2txt or antiword
+                # For now, we'll raise an error with a helpful message
+                raise HTTPException(
+                    status_code=400, 
+                    detail="Legacy .doc format detected. Please convert to .docx or .pdf format."
+                )
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"DOC extraction error: {e}")
+            raise HTTPException(status_code=500, detail=f"DOC extraction failed: {e}")
+    
+    @staticmethod
+    def extract_text(file_bytes: bytes, filename: str) -> str:
+        """Extract text based on file extension"""
+        file_extension = filename.lower().split('.')[-1]
+        
+        if file_extension == 'pdf':
+            return DocumentExtractor.extract_text_from_pdf(file_bytes)
+        elif file_extension == 'docx':
+            return DocumentExtractor.extract_text_from_docx(file_bytes)
+        elif file_extension == 'doc':
+            return DocumentExtractor.extract_text_from_doc(file_bytes)
+        else:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Unsupported file format: .{file_extension}. Supported formats: .pdf, .docx, .doc"
+            )
 
 
 class TextCleaner:
@@ -135,7 +223,10 @@ class AIService:
     # ---------- PROMPT 1: Candidate Data Extraction ----------
     def extract_candidate_data(self, cv_text: str) -> Dict[str, Any]:
         prompt_tmpl = Template("""
-You are an AI assistant specialized in parsing resumes. Extract the following details.
+You are an AI assistant specialized in parsing resumes. Extract the following details comprehensively.
+
+CURRENT DATE: ${current_date} (Use this to calculate durations for ongoing positions)
+CURRENT YEAR: ${current_year}
 
 RESUME TEXT:
 ${cv_text}
@@ -146,7 +237,24 @@ OUTPUT JSON FORMAT:
     "name": "<full name>",
     "email": "<email>",
     "phone": "<phone>",
-    "location": "<location>"
+    "location": "<location>",
+    "total_experience_years": <total years as decimal, e.g., 5.5>,
+    "work_experience": [
+      {
+        "company": "<company name>",
+        "role": "<job title>",
+        "duration": "<e.g., Jan 2020 - Dec 2022 or 2 years 3 months>",
+        "years": <numeric years, e.g., 2.25>
+      }
+    ],
+    "education": [
+      {
+        "degree": "<degree name, e.g., Bachelor of Science>",
+        "institution": "<university/college name>",
+        "year": "<graduation year or date range>",
+        "field_of_study": "<major/specialization>"
+      }
+    ]
   },
   "keywords": {
     "keywords": [
@@ -155,13 +263,31 @@ OUTPUT JSON FORMAT:
     ]
   }
 }
-Rules:
-- Always return exactly 8 keywords if available.
-- Relevance score (0–100) indicates importance in the candidate's profile.
-- Return only valid JSON.
+
+EXTRACTION RULES:
+1. **Work Experience**: Extract ALL companies mentioned with their respective durations
+   - Calculate years as decimal (e.g., 1 year 6 months = 1.5 years)
+   - If only dates given, calculate the duration from start date to end date
+   - For ongoing positions (e.g., "2024 - Present", "Jan 2023 - Current"), calculate duration up to ${current_date}
+   - Convert all date ranges to numeric years with 2 decimal places
+   - Include current positions (use "Present" for end date in duration field)
+   
+2. **Total Experience**: Sum up all work experience years (calculate ongoing positions up to current date)
+
+3. **Education**: Extract ALL educational qualifications
+   - Include degree type, institution, graduation year, and field of study
+   - List from highest to lowest degree
+   
+4. **Keywords**: Always return exactly 8 most relevant keywords with scores (0-100)
+
+5. Return ONLY valid JSON, no additional text.
 """)
         try:
-            prompt = prompt_tmpl.substitute(cv_text=cv_text)
+            prompt = prompt_tmpl.substitute(
+                cv_text=cv_text,
+                current_date=CURRENT_DATE_STR,
+                current_year=CURRENT_YEAR
+            )
             response = self.model.generate_content(prompt)
             
             # Handle response properly
@@ -189,7 +315,10 @@ Rules:
             logger.error(f"Candidate data extraction failed: {e}")
             logger.error(f"Response type: {type(response)}")
             return {
-                "candidate_details": {},
+                "candidate_details": {
+                    "work_experience": [],
+                    "education": []
+                },
                 "keywords": {"keywords": []}
             }
 
@@ -301,7 +430,7 @@ INTERNAL SEED: {datetime.now().timestamp()}
 app = FastAPI(
     title="AI-Powered Resume Screening & ATS Scoring System",
     description="Automated resume screening with deterministic scoring using Google Gemini AI",
-    version="2.1.0",
+    version="2.2.0",
     docs_url="/docs",
     redoc_url="/redoc"
 )
@@ -315,7 +444,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-pdf_extractor = PDFExtractor()
+document_extractor = DocumentExtractor()
 text_cleaner = TextCleaner()
 ai_service = AIService()
 
@@ -342,7 +471,7 @@ async def health_check():
     """Health check endpoint for monitoring"""
     return HealthCheck(
         status="healthy",
-        message="AI Resume Screening & ATS Scoring System v2.1 is operational",
+        message="AI Resume Screening & ATS Scoring System v2.3 is operational (supports PDF, DOCX, DOC)",
         timestamp=datetime.now().isoformat()
     )
 
@@ -353,15 +482,21 @@ async def complete_analysis(
     job_description: str = Form(...),
     resume: UploadFile = File(...)
 ):
-    """Complete resume analysis endpoint"""
-    if not resume.filename.endswith(".pdf"):
-        raise HTTPException(status_code=400, detail="Only PDF files are supported.")
+    """Complete resume analysis endpoint - supports PDF, DOCX, and DOC files"""
+    
+    # Validate file extension
+    filename = resume.filename.lower()
+    if not (filename.endswith(".pdf") or filename.endswith(".docx") or filename.endswith(".doc")):
+        raise HTTPException(
+            status_code=400, 
+            detail="Only PDF (.pdf), Word Document (.docx), and Legacy Word (.doc) files are supported."
+        )
 
     content = await resume.read()
 
     try:
-        # Extract and clean text
-        raw_text = pdf_extractor.extract_text(content)
+        # Extract text based on file type
+        raw_text = document_extractor.extract_text(content, resume.filename)
         cleaned_text = text_cleaner.clean_text(raw_text)
         
         logger.info(f"Processing resume for job role: {job_role}")
@@ -375,7 +510,46 @@ async def complete_analysis(
             logger.warning(f"candidate_details is not a dict: {type(candidate_details_dict)}")
             candidate_details_dict = {}
         
-        candidate_details = CandidateDetails(**candidate_details_dict)
+        # Extract work experience
+        work_exp_list = candidate_details_dict.get("work_experience", [])
+        if not isinstance(work_exp_list, list):
+            logger.warning(f"work_experience is not a list: {type(work_exp_list)}")
+            work_exp_list = []
+        
+        work_experience_objs = []
+        for exp in work_exp_list:
+            try:
+                if isinstance(exp, dict):
+                    work_experience_objs.append(WorkExperience(**exp))
+            except Exception as exp_error:
+                logger.warning(f"Failed to parse work experience: {exp_error}")
+                continue
+        
+        # Extract education
+        education_list = candidate_details_dict.get("education", [])
+        if not isinstance(education_list, list):
+            logger.warning(f"education is not a list: {type(education_list)}")
+            education_list = []
+        
+        education_objs = []
+        for edu in education_list:
+            try:
+                if isinstance(edu, dict):
+                    education_objs.append(Education(**edu))
+            except Exception as edu_error:
+                logger.warning(f"Failed to parse education: {edu_error}")
+                continue
+        
+        # Create candidate details with all fields
+        candidate_details = CandidateDetails(
+            name=candidate_details_dict.get("name"),
+            email=candidate_details_dict.get("email"),
+            phone=candidate_details_dict.get("phone"),
+            location=candidate_details_dict.get("location"),
+            work_experience=work_experience_objs,
+            education=education_objs,
+            total_experience_years=candidate_details_dict.get("total_experience_years")
+        )
         
         # Safely extract keywords
         keywords_data = candidate_data.get("keywords", {})
@@ -459,10 +633,11 @@ async def complete_analysis(
 @app.on_event("startup")
 async def startup_event():
     logger.info("=" * 60)
-    logger.info("AI Resume Screening System v2.1 Starting...")
+    logger.info("AI Resume Screening System v2.3 Starting...")
     logger.info("Architecture: Deterministic Two-Prompt System")
-    logger.info("  - Prompt 1: Candidate Extraction")
+    logger.info("  - Prompt 1: Candidate Extraction (with Experience & Education)")
     logger.info("  - Prompt 2: ATS Scoring with Rubric Logic")
+    logger.info("Supported Formats: PDF, DOCX, DOC")
     logger.info(f"Environment: {os.getenv('ENVIRONMENT', 'production')}")
     logger.info("=" * 60)
 
