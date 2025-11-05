@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
-
+from fastapi import Body
 # ==================== CONFIGURATION ====================
 load_dotenv()
 
@@ -34,7 +34,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+GOOGLE_API_KEY = "AIzaSyDZcf9dKPA-NaLUjbsRmcgRPzTKMpeKo7Q"
+
 if not GOOGLE_API_KEY:
     logger.error("Missing GOOGLE_API_KEY in environment variables")
     raise ValueError("GOOGLE_API_KEY must be set in environment variables")
@@ -109,6 +111,10 @@ class HealthCheck(BaseModel):
     message: str
     timestamp: str
     version: str = "2.3.0"
+
+
+class ReportRequest(BaseModel):
+    analysis_data: CompleteAnalysisResponse
 
 
 class ErrorResponse(BaseModel):
@@ -627,6 +633,80 @@ async def complete_analysis(
         raise HTTPException(
             status_code=500, 
             detail=f"Analysis failed: {str(e)}"
+        )
+    
+@app.post("/api/v1/generate-report")
+async def generate_report(analysis_request: ReportRequest = Body(...)):
+    """
+    Generate a professional text report based on AI analysis JSON.
+    The frontend can use this text to render and download a PDF.
+    """
+    try:
+        # Extract data from request
+        data = analysis_request.analysis_data
+        candidate = data.resume_data.candidate_details
+        screening = data.screening
+        keywords = [kw.keyword for kw in data.resume_data.keywords.keywords]
+        suggestions = screening.suggestions
+
+        # Prepare structured prompt for LLM
+        report_prompt = f"""
+You are an expert technical report writer specializing in HR analytics.
+
+TASK: Generate a professional textual report summarizing the candidate's screening results.
+The report will be used for a downloadable PDF document.
+
+DATA INPUT:
+- Candidate Name: {candidate.name or "N/A"}
+- Email: {candidate.email or "N/A"}
+- Phone: {candidate.phone or "N/A"}
+- Location: {candidate.location or "N/A"}
+- Total Experience: {candidate.total_experience_years or "N/A"} years
+- Job Role Applied: {data.resume_data.job_role}
+- ATS Score: {screening.ats_score}
+- Grade: {screening.grade}
+- Keywords Matched: {', '.join(keywords) if keywords else "N/A"}
+- Screening Summary: {screening.summary}
+
+SUGGESTIONS:
+{chr(10).join([f"- {s.missing_skill}: {s.suggested_action} (Priority: {s.priority})" for s in suggestions]) or "No specific suggestions."}
+
+FORMAT REQUIREMENTS:
+1. Write in formal business English.
+2. Structure it into clear sections: Overview, Candidate Summary, Match Evaluation, Key Skills, Recommendations, and Final Assessment.
+3. Avoid using bullet points for entire report—mix narrative and concise lists.
+4. End with a closing statement indicating overall suitability for the role.
+"""
+
+        # Use the existing AI service
+        ai = AIService()
+        response = ai.model.generate_content(report_prompt)
+
+        # Extract text safely
+        if hasattr(response, 'text'):
+            report_text = response.text.strip()
+        elif hasattr(response, 'parts'):
+            report_text = ''.join(part.text for part in response.parts if hasattr(part, 'text')).strip()
+        else:
+            report_text = str(response).strip()
+
+        if not report_text:
+            raise ValueError("Empty response from LLM while generating report")
+
+        return JSONResponse(
+            status_code=200,
+            content={
+                "success": True,
+                "generated_report_text": report_text,
+                "generated_at": datetime.now().isoformat()
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Report generation failed: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Report generation failed: {str(e)}"
         )
 
 # ==================== STARTUP & SHUTDOWN ====================
