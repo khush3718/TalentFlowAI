@@ -34,8 +34,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-GOOGLE_API_KEY = "AIzaSyDZcf9dKPA-NaLUjbsRmcgRPzTKMpeKo7Q"
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# GOOGLE_API_KEY = ""
 
 if not GOOGLE_API_KEY:
     logger.error("Missing GOOGLE_API_KEY in environment variables")
@@ -722,4 +722,5 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_event():
     logger.info("Shutting down Resume Screening System...")
+
 
